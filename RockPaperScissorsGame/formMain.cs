@@ -2,81 +2,83 @@ namespace RockPaperScissorsGame
 {
     public partial class formMain : Form
     {
-        private enum Choice
+        private enum Choice // enum for all possible choices for the game 
         {
             Rock = 0,
             Paper = 1,
             Scissors = 2,
         }
-        private enum GameOutcome
+        private enum GameOutcome // all possible results from the game
         {
             PlayerWins = 0,
             ComputerWins = 1,
             Draw = 2,
         }
-        private Label[] labelWinners;
-        private int gameCount = -1;
+        private Label[] labelWinners; // array of labels for game history 
+        private int gameCount = -1; // counter to track the amount of games (useful for labelWinners and ending the game)
 
         public formMain()
         {
             InitializeComponent();
         }
-
+       
         private void buttonRock_Click(object sender, EventArgs e)
         {
-            StartGame(Choice.Rock);
+            StartGame(Choice.Rock); // starts game with rock choice
         }
 
         private void buttonPaper_Click(object sender, EventArgs e)
         {
-            StartGame(Choice.Paper);
+            StartGame(Choice.Paper); // starts game with paper choice
         }
 
         private void buttonScissors_Click(object sender, EventArgs e)
         {
-            StartGame(Choice.Scissors);
+            StartGame(Choice.Scissors); // starts game with scissors choice
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Application.Exit(); // closes application
         }
 
-        private void StartGame(Choice playerChoice)
+        private void StartGame(Choice playerChoice) // start game method to start the game
         {
-            labelWinners = new Label[3] { labelWinner1, labelWinner2, labelWinner3 };   
-            gameCount++;
+            labelWinners = new Label[3] { labelWinner1, labelWinner2, labelWinner3 }; // creates an array of all game history labels
+            gameCount++; 
 
-            labelPlayerChoice.Text = "Player Selected: " + playerChoice;
+            labelPlayerChoice.Text = "Player Selected: " + playerChoice; // outputs the player's choice
             Random random = new Random();
-            Choice computerChoice = (Choice)random.Next(0, 3);
-            labelComputerChoice.Text = "Computer Selected: " + computerChoice;
+            Choice computerChoice = (Choice)random.Next(0, 3); /* randomly generates computers choice between 0 and 2 and casts it
+            into the Choice enum */
+            labelComputerChoice.Text = "Computer Selected: " + computerChoice; // outputs computer's choice
 
-            GameOutcome gameOutcome = DetermineWinner(playerChoice, computerChoice);
-            switch (gameOutcome)
+            GameOutcome gameOutcome = DetermineWinner(playerChoice, computerChoice); // receives game outcome
+            switch (gameOutcome) // switch statement on all outcomes of gameOutcome
             {
-                default:
+                default: // game counter is useful to display correct info in the correct label at the correct time
                 case GameOutcome.Draw:
-                    labelWinners[gameCount].Text += " Draw";
+                    labelWinners[gameCount].Text += " Draw"; // adds draw text if draw
                     break;
                 case GameOutcome.PlayerWins:
-                    labelWinners[gameCount].Text += " Player Won";
+                    labelWinners[gameCount].Text += " Player Won"; // adds player won text if player won
                     break;
                 case GameOutcome.ComputerWins:
-                    labelWinners[gameCount].Text += " Computer Won";
+                    labelWinners[gameCount].Text += " Computer Won"; // adds computer won text if computer won
                     break;
             }
 
-            if (gameCount >= 2)
+            if (gameCount >= 2) // game will end after 3 turns
             {
                 EndGame();
             }
         }
 
-        private GameOutcome DetermineWinner(Choice playerChoice, Choice computerChoice)
+        // takes in player's choice + computer's choice and returns the outcome in the GameOutcome enum
+        private GameOutcome DetermineWinner(Choice playerChoice, Choice computerChoice) 
         {
             GameOutcome outcome;
-            if (playerChoice == computerChoice)
+            if (playerChoice == computerChoice) // draw
             {
                 outcome = GameOutcome.Draw;
             }
@@ -87,7 +89,7 @@ namespace RockPaperScissorsGame
             {
                 outcome = GameOutcome.PlayerWins;
             }
-            else
+            else // opposite of above
             {
                 outcome = GameOutcome.ComputerWins;
             }
@@ -95,7 +97,7 @@ namespace RockPaperScissorsGame
             return outcome;
         }
 
-        private void EndGame()
+        private void EndGame() // resets the game counter and disables game buttons (to prevent errors)
         {
             gameCount = -1;
 
@@ -105,7 +107,8 @@ namespace RockPaperScissorsGame
             buttonScissors.Enabled = false;
         }
 
-        private void buttonPlayAgain_Click(object sender, EventArgs e)
+        // re-enables game buttons to start the game again and clears game history
+        private void buttonPlayAgain_Click(object sender, EventArgs e) 
         {
             for (int i = 0; i < labelWinners.Length; i++)
             {
