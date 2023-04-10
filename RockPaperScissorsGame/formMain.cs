@@ -2,26 +2,28 @@ namespace RockPaperScissorsGame
 {
     public partial class formMain : Form
     {
-        private enum Choice // enum for all possible choices for the game 
+        private enum Choice // enum for all possible choices for the game
         {
             Rock = 0,
             Paper = 1,
             Scissors = 2,
         }
+
         private enum GameOutcome // all possible results from the game
         {
             PlayerWins = 0,
             ComputerWins = 1,
             Draw = 2,
         }
-        private Label[] labelWinners; // array of labels for game history 
+
+        private Label[] labelWinners = new Label[3]; // array of labels for game history
         private int gameCount = -1; // counter to track the amount of games (useful for labelWinners and ending the game)
 
         public formMain()
         {
             InitializeComponent();
         }
-       
+
         private void buttonRock_Click(object sender, EventArgs e)
         {
             StartGame(Choice.Rock); // starts game with rock choice
@@ -45,7 +47,7 @@ namespace RockPaperScissorsGame
         private void StartGame(Choice playerChoice) // start game method to start the game
         {
             labelWinners = new Label[3] { labelWinner1, labelWinner2, labelWinner3 }; // creates an array of all game history labels
-            gameCount++; 
+            gameCount++;
 
             labelPlayerChoice.Text = "Player Selected: " + playerChoice; // outputs the player's choice
             Random random = new Random();
@@ -75,17 +77,19 @@ namespace RockPaperScissorsGame
         }
 
         // takes in player's choice + computer's choice and returns the outcome in the GameOutcome enum
-        private GameOutcome DetermineWinner(Choice playerChoice, Choice computerChoice) 
+        private GameOutcome DetermineWinner(Choice playerChoice, Choice computerChoice)
         {
             GameOutcome outcome;
             if (playerChoice == computerChoice) // draw
             {
                 outcome = GameOutcome.Draw;
             }
-            // Heirachy of moves (which moves beat which)
-            else if ((playerChoice == Choice.Rock && computerChoice == Choice.Scissors) || // rock vs scissors
-                     (playerChoice == Choice.Paper && computerChoice == Choice.Rock) || // paper vs rock
-                     (playerChoice == Choice.Scissors && computerChoice == Choice.Paper)) // scissors vs paper
+            // Hierarchy of moves (which moves beat which)
+            else if (
+                (playerChoice == Choice.Rock && computerChoice == Choice.Scissors)
+                || (playerChoice == Choice.Paper && computerChoice == Choice.Rock)
+                || (playerChoice == Choice.Scissors && computerChoice == Choice.Paper)
+            )
             {
                 outcome = GameOutcome.PlayerWins;
             }
@@ -108,7 +112,7 @@ namespace RockPaperScissorsGame
         }
 
         // re-enables game buttons to start the game again and clears game history
-        private void buttonPlayAgain_Click(object sender, EventArgs e) 
+        private void buttonPlayAgain_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < labelWinners.Length; i++)
             {
