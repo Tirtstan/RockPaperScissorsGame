@@ -43,6 +43,8 @@
             labelWinner3 = new Label();
             buttonClose = new Button();
             buttonPlayAgain = new Button();
+            labelWinner4 = new Label();
+            labelOverallWinner = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -141,31 +143,34 @@
             // 
             labelWinner1.AutoSize = true;
             labelWinner1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            labelWinner1.Location = new Point(35, 425);
+            labelWinner1.Location = new Point(35, 404);
             labelWinner1.Name = "labelWinner1";
             labelWinner1.Size = new Size(179, 25);
             labelWinner1.TabIndex = 8;
             labelWinner1.Text = "Winner of Game 1:";
+            labelWinner1.Visible = false;
             // 
             // labelWinner2
             // 
             labelWinner2.AutoSize = true;
             labelWinner2.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            labelWinner2.Location = new Point(35, 464);
+            labelWinner2.Location = new Point(35, 438);
             labelWinner2.Name = "labelWinner2";
             labelWinner2.Size = new Size(179, 25);
             labelWinner2.TabIndex = 9;
             labelWinner2.Text = "Winner of Game 2:";
+            labelWinner2.Visible = false;
             // 
             // labelWinner3
             // 
             labelWinner3.AutoSize = true;
             labelWinner3.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            labelWinner3.Location = new Point(35, 503);
+            labelWinner3.Location = new Point(35, 472);
             labelWinner3.Name = "labelWinner3";
             labelWinner3.Size = new Size(179, 25);
             labelWinner3.TabIndex = 10;
             labelWinner3.Text = "Winner of Game 3:";
+            labelWinner3.Visible = false;
             // 
             // buttonClose
             // 
@@ -190,11 +195,34 @@
             buttonPlayAgain.UseVisualStyleBackColor = true;
             buttonPlayAgain.Click += buttonPlayAgain_Click;
             // 
+            // labelWinner4
+            // 
+            labelWinner4.AutoSize = true;
+            labelWinner4.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelWinner4.Location = new Point(35, 508);
+            labelWinner4.Name = "labelWinner4";
+            labelWinner4.Size = new Size(179, 25);
+            labelWinner4.TabIndex = 13;
+            labelWinner4.Text = "Winner of Game 4:";
+            labelWinner4.Visible = false;
+            // 
+            // labelOverallWinner
+            // 
+            labelOverallWinner.AutoSize = true;
+            labelOverallWinner.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelOverallWinner.Location = new Point(35, 550);
+            labelOverallWinner.Name = "labelOverallWinner";
+            labelOverallWinner.Size = new Size(151, 25);
+            labelOverallWinner.TabIndex = 14;
+            labelOverallWinner.Text = "Overall Winner:";
+            // 
             // formMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(880, 587);
+            Controls.Add(labelOverallWinner);
+            Controls.Add(labelWinner4);
             Controls.Add(buttonPlayAgain);
             Controls.Add(buttonClose);
             Controls.Add(labelWinner3);
@@ -234,5 +262,7 @@
         private Label labelWinner3;
         private Button buttonClose;
         private Button buttonPlayAgain;
+        private Label labelWinner4;
+        private Label labelOverallWinner;
     }
 }
