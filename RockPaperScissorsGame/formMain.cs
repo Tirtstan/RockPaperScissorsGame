@@ -44,14 +44,14 @@ namespace RockPaperScissorsGame
             Application.Exit(); // closes application
         }
 
-        private void StartGame(Choice playerChoice) // start game method to start the game
+        private void StartGame(Choice playerChoice) // method to start the game
         {
             labelWinners = new Label[3] { labelWinner1, labelWinner2, labelWinner3 }; // creates an array of all game history labels
             gameCount++;
 
             labelPlayerChoice.Text = "Player Selected: " + playerChoice; // outputs the player's choice
             Random random = new Random();
-            Choice computerChoice = (Choice)random.Next(0, 3); /* randomly generates computers choice between 0 and 2 and casts it
+            Choice computerChoice = (Choice)random.Next(0, 3); /* randomly generates computer's choice between 0 and 2 and casts it
             into the Choice enum */
             labelComputerChoice.Text = "Computer Selected: " + computerChoice; // outputs computer's choice
 
@@ -118,6 +118,8 @@ namespace RockPaperScissorsGame
             {
                 labelWinners[i].Text = $"Winner of Game {i + 1}: ";
             }
+            labelPlayerChoice.Text = "Player Selected: ";
+            labelComputerChoice.Text = "Computer Selected: ";
 
             buttonPlayAgain.Enabled = false;
             buttonRock.Enabled = true;

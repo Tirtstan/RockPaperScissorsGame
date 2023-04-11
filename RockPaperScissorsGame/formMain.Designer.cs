@@ -180,6 +180,7 @@
             // 
             // buttonPlayAgain
             // 
+            buttonPlayAgain.Enabled = false;
             buttonPlayAgain.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonPlayAgain.Location = new Point(628, 525);
             buttonPlayAgain.Name = "buttonPlayAgain";
