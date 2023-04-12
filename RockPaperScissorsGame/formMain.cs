@@ -16,10 +16,9 @@ namespace RockPaperScissorsGame
             Draw = 2,
         }
 
-        private Label[] labelWinners = new Label[4]; // array of labels for game history
         private int playerScore = 0;
         private int computerScore = 0;
-        private int gameCount = -1; // counter to track the amount of games (useful for labelWinners and ending the game)
+        private int gameCount = 0; // counter to track the amount of games
 
         public formMain()
         {
@@ -46,35 +45,59 @@ namespace RockPaperScissorsGame
             Application.Exit(); // closes application
         }
 
-        private void StartGame(Choice playerChoice) // method to start the game
+        // starts the game
+        private void StartGame(Choice playerChoice)
         {
-            labelWinners = new Label[4] { labelWinner1, labelWinner2, labelWinner3, labelWinner4 }; // creates an array of all game history labels
-            gameCount++; // tracks game round
+            gameCount++; // increases game round
 
             Random random = new Random();
             Choice computerChoice = (Choice)random.Next(0, 3); /* randomly generates computer's choice between 0 and 2 and casts it
             into the Choice enum */
 
-            labelComputerChoice.Text = "Computer Selected: " + computerChoice; // outputs computer's choice
-            labelPlayerChoice.Text = "Player Selected: " + playerChoice; // outputs the player's choice
+            // outputs choices
+            labelComputerChoice.Text = "Computer Selected: " + computerChoice;
+            labelPlayerChoice.Text = "Player Selected: " + playerChoice;
 
-            labelWinners[gameCount].Visible = true; // reveal relevant label as game goes on
-            GameOutcome gameOutcome = DetermineWinner(playerChoice, computerChoice); // receives game outcome
-            switch (gameOutcome) // switch statement on all outcomes of gameOutcome
+            // receives game outcome
+            GameOutcome gameOutcome = DetermineWinner(playerChoice, computerChoice);
+
+            string outcome;
+            switch (gameOutcome) // creates a outcome string based on the game outcome
             {
-                default: // game counter is useful to display correct info in the correct label at the correct time
+                default:
                 case GameOutcome.Draw:
-                    labelWinners[gameCount].Text += " Draw"; // adds draw text if draw
+                    outcome = " Draw";
                     break;
                 case GameOutcome.PlayerWins:
-                    labelWinners[gameCount].Text += " Player Won"; // adds player won text if player won
+                    outcome = " Player Won";
                     break;
                 case GameOutcome.ComputerWins:
-                    labelWinners[gameCount].Text += " Computer Won"; // adds computer won text if computer won
+                    outcome = " Computer Won";
                     break;
             }
 
-            if (gameCount >= 2) // if game round exceeds or equals 3 times (starts at -1)
+            switch (gameCount) // adds outcome to relevant label and reveals them
+            {
+                default:
+                case 1:
+                    labelWinner1.Visible = true;
+                    labelWinner1.Text += outcome;
+                    break;
+                case 2:
+                    labelWinner2.Visible = true;
+                    labelWinner2.Text += outcome;
+                    break;
+                case 3:
+                    labelWinner3.Visible = true;
+                    labelWinner3.Text += outcome;
+                    break;
+                case 4:
+                    labelWinner4.Visible = true;
+                    labelWinner4.Text += outcome;
+                    break;
+            }
+
+            if (gameCount >= 3) // if game round exceeds or equals 3 times
             {
                 GameOutcome overallOutcome = DetermineOverallWinner(playerScore, computerScore);
                 string winner;
@@ -92,7 +115,7 @@ namespace RockPaperScissorsGame
                         break;
                 }
 
-                if (overallOutcome != GameOutcome.Draw || gameCount >= 3) // if last game was a draw, play one more game
+                if (overallOutcome != GameOutcome.Draw || gameCount >= 4) // if last game was a draw, play one more game (round 4)
                 {
                     labelOverallWinner.Visible = true;
                     labelOverallWinner.Text = "Overall Winner: " + winner;
@@ -102,10 +125,11 @@ namespace RockPaperScissorsGame
         }
 
         // takes in player's choice + computer's choice and returns the outcome in the GameOutcome enum
+        // scores are incremented
         private GameOutcome DetermineWinner(Choice playerChoice, Choice computerChoice)
         {
             GameOutcome outcome;
-            if (playerChoice == computerChoice) // draw
+            if (playerChoice == computerChoice)
             {
                 outcome = GameOutcome.Draw;
             }
@@ -116,12 +140,12 @@ namespace RockPaperScissorsGame
             )
             {
                 outcome = GameOutcome.PlayerWins;
-                playerScore++; // add 1 to player's score
+                playerScore++;
             }
-            else // opposite of above
+            else
             {
                 outcome = GameOutcome.ComputerWins;
-                computerScore++; // add 1 to computer's score
+                computerScore++;
             }
 
             return outcome;
@@ -149,11 +173,10 @@ namespace RockPaperScissorsGame
 
         private void EndGame() // resets the game counter, player and computer score, and disables game buttons (to prevent errors)
         {
-            gameCount = -1;
+            gameCount = 0;
             playerScore = 0;
             computerScore = 0;
 
-            buttonPlayAgain.Enabled = true;
             buttonRock.Enabled = false;
             buttonPaper.Enabled = false;
             buttonScissors.Enabled = false;
@@ -162,17 +185,22 @@ namespace RockPaperScissorsGame
         // re-enables game buttons to start the game again, clears and hides game history
         private void buttonPlayAgain_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < labelWinners.Length; i++)
-            {
-                labelWinners[i].Text = $"Winner of Game {i + 1}: ";
-                labelWinners[i].Visible = false;
-            }
+            labelWinner1.Text = "Winner of Game 1:";
+            labelWinner1.Visible = false;
+
+            labelWinner2.Text = "Winner of Game 2:";
+            labelWinner2.Visible = false;
+
+            labelWinner3.Text = "Winner of Game 3:";
+            labelWinner3.Visible = false;
+
+            labelWinner4.Text = "Winner of Game 4:";
+            labelWinner4.Visible = false;
 
             labelPlayerChoice.Text = "Player Selected: ";
             labelComputerChoice.Text = "Computer Selected: ";
             labelOverallWinner.Visible = false;
 
-            buttonPlayAgain.Enabled = false;
             buttonRock.Enabled = true;
             buttonPaper.Enabled = true;
             buttonScissors.Enabled = true;

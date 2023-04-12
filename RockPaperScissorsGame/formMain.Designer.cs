@@ -185,7 +185,6 @@
             // 
             // buttonPlayAgain
             // 
-            buttonPlayAgain.Enabled = false;
             buttonPlayAgain.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonPlayAgain.Location = new Point(628, 525);
             buttonPlayAgain.Name = "buttonPlayAgain";
@@ -215,6 +214,7 @@
             labelOverallWinner.Size = new Size(151, 25);
             labelOverallWinner.TabIndex = 14;
             labelOverallWinner.Text = "Overall Winner:";
+            labelOverallWinner.Visible = false;
             // 
             // formMain
             // 
