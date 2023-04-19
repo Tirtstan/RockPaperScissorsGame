@@ -206,4 +206,22 @@ namespace RockPaperScissorsGame
             buttonScissors.Enabled = true;
         }
     }
+
+    #region Reference List
+    /*
+  
+    Tenor. 2022. The Rock Raising Eyebrow GIF. [Online].
+    Available at: https://tenor.com/view/the-rock-raising-eyebrow-gif-25067257
+    [Accessed 19 April 2023].
+
+    BetterCloud. 2021. clippy. [Online].
+    Available at: https://www.bettercloud.com/monitor/the-academy/how-to-find-clippy-in-office-2013/clippy/
+    [Accessed 19 April 2023].
+
+    iStock. 2016. Scissors Icon stock illustration. [Online].
+    Available at: https://www.istockphoto.com/vector/scissors-icon-gm518699616-90180015
+    [Accessed 19 April 2023].
+    
+     */
+    #endregion
 }

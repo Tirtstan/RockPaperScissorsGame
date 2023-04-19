@@ -62,7 +62,7 @@
             pictureBox1.Location = new Point(35, 26);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(220, 219);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -72,17 +72,17 @@
             pictureBox2.Location = new Point(321, 26);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(220, 219);
-            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = Properties.Resources.scissors;
+            pictureBox3.Image = Properties.Resources.scissors_icon;
             pictureBox3.Location = new Point(604, 26);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(220, 219);
-            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
